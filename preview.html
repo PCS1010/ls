@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LS Interiors | Bespoke Interior Designers & Custom Manufacturing Hyderabad</title>
+  <meta name="description" content="LS Interiors (Estd. 2008 Hyderabad) provides turnkey interior design solutions with Zero Token Advance, In-House Moosapet Factory Manufacturing, 45-day handover, and 10-year warranty." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- React 18 & Babel CDN for Instant Zero-Setup Execution -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- External Stylesheet with Dark & Light Themes -->
+  <link rel="stylesheet" href="./src/index.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React Application Scripts -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef, useMemo } = React;
+
+    // --- DATA ---
+    const companyInfo = {
+      name: "LS Interiors",
+      tagline: "A to Z Interior Solutions & Custom Factory Manufacturing",
+      established: 2008,
+      registration: "Registered in 2008 under Companies Act, Hyderabad",
+      email: "lsinteriors24@gmail.com",
+      phones: ["+91 9177374198", "+91 7893002568"],
+      whatsapp: "+919177374198",
+      address: "Plot no- 15, Bldg.No-5-246/9/2, HPC Road, Moosapet, Hyderabad, Telangana - 500018",
+      stats: {
+        years: "16+",
+        satisfiedClients: "900+",
+        completedProjects: "1,000+",
+        pipelinedProjects: "1,000+"
+      },
+      guarantees: [
+        {
+          title: "Zero Token Advance",
+          desc: "We announce the estimation price and provide 3D image drawings before any financial commitment."
+        },
+        {
+          title: "In-House Factory Precision",
+          desc: "Vertically integrated custom manufacturing facility in Moosapet for 100% precision and zero middleman markups."
+        },
+        {
+          title: "45-Day Handover Guarantee",
+          desc: "Strict adherence to project schedules with on-time delivery or we pay penalty."
+        },
+        {
+          title: "10-Year Warranty",
+          desc: "Premium BWP Marine grade plywood and top-tier German/Italian hardware with dedicated post-installation support."
+        }
+      ]
+    };
+
+    const servicesData = [
+      {
+        id: "modular-kitchen",
+        title: "Modular Kitchen Ideas",
+        category: "Kitchen",
+        shortDesc: "Ergonomically engineered modular kitchens with marine-grade waterproof materials and intelligent storage.",
+        fullDesc: "A well-designed modular kitchen combines the style of your home with a modern aesthetic as well as offers a seamless cooking experience. The custom furnished kitchen is aesthetically designed to meet individual needs and adapt to the available space. Using German soft-close hinges, quartz countertops, and anti-termite BWP plywood, we craft culinary spaces that last decades.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image1.jpg",
+        features: [
+          "Waterproof BWP Marine Ply & Acrylic / PU Finish",
+          "Soft-close Hettich / Hafele hardware & pull-outs",
+          "Corner carousel & tall pantry units",
+          "Integrated chimney & hob layout planning"
+        ],
+        startingPrice: "₹1,80,000"
+      },
+      {
+        id: "wardrobes",
+        title: "Designer Wardrobes",
+        category: "Storage",
+        shortDesc: "Floor-to-ceiling sliding, walk-in, and hinged wardrobes with customized internal organizers.",
+        fullDesc: "Any bedroom is incomplete without a wardrobe that provides essential storage for your lifestyle. Our wooden wardrobe designs contribute seamlessly to the bedroom aesthetic, matching beds and dressers. We manufacture sliding, openable, and walk-in wardrobes with sensor lighting and velvet jewelry trays at our Moosapet factory.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image3.jpg",
+        features: [
+          "Lacquer glass, acrylic, and textured laminate doors",
+          "Heavy-duty top-hung sliding track mechanisms",
+          "Automated motion-sensor LED profile lights",
+          "Custom drawers with digital locker provisions"
+        ],
+        startingPrice: "₹1,40,000"
+      },
+      {
+        id: "tv-crockery-units",
+        title: "TV & Crockery Units",
+        category: "Living",
+        shortDesc: "Backlit marble & fluted panel entertainment consoles and luxury glass display cabinets.",
+        fullDesc: "Crockery units and TV consoles are much more than just storage cabinets. They are the artistic focal point of your living and dining areas. We craft backlit onyx marble backdrops, fluted wood louvers, bronze-tinted glass cabinets, and concealed wire cable conduits that exude pure sophistication.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image7.jpg",
+        features: [
+          "Fluted wooden panels & acoustic wall slats",
+          "Backlit onyx marble & PU gloss finish",
+          "Toughened bronze glass display with spotlighting",
+          "Concealed cable raceways & soundbar shelving"
+        ],
+        startingPrice: "₹85,000"
+      },
+      {
+        id: "living-room",
+        title: "Living Room Luxury",
+        category: "Living",
+        shortDesc: "Signature living room design featuring ambient lighting, bespoke woodwork, and spatial harmony.",
+        fullDesc: "If you are looking to remodel your living room by dressing it with contemporary amenities, look no further than LS Interiors. We assure you matchless living room modeling solutions with cohesive color palettes, accent wall paneling, ceiling cove lighting, and tailor-made seating.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image2.jpg",
+        features: [
+          "Custom wall panelling & veneer cladding",
+          "Integrated false ceiling with smart cove lighting",
+          "Foyer shoe console with partition partition jali",
+          "Tailored luxury seating & coffee table ensembles"
+        ],
+        startingPrice: "₹2,20,000"
+      },
+      {
+        id: "bedrooms",
+        title: "Master & Guest Bedrooms",
+        category: "Bedroom",
+        shortDesc: "Soothing sanctuaries crafted with acoustic headboards, warm ambient lighting, and dresser units.",
+        fullDesc: "A bedroom is the vital retreat of any home; therefore, it should be customized and maintained precisely to evoke serene relaxation. We craft custom upholstered headboards, bedside floating pedestals, study desks, and aesthetic dressing tables.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image4.jpg",
+        features: [
+          "Acoustic fabric/leatherette full-height headboards",
+          "Floating bedside tables with integrated USB ports",
+          "Illuminated vanity dresser with full-length mirror",
+          "Multi-layered ambient & reading illumination"
+        ],
+        startingPrice: "₹1,90,000"
+      },
+      {
+        id: "kids-room",
+        title: "Vibrant Kids Rooms",
+        category: "Bedroom",
+        shortDesc: "Imaginative, safe, and functional spaces designed with study zones, themed decor, and rounded edges.",
+        fullDesc: "When it comes to kids' rooms, LS Interiors has endless creative ideas. We blend playful themes with ergonomic study desks, bunk beds, and book storage, ensuring child-safe materials, non-toxic paints, and rounded edges for safety.",
+        image: "https://lsinteriors.in/wp-content/uploads/2018/02/g7ce970edd66a7563728214479794ef16a52debec28d919488becfece3408ba8b0198dbbecc7452dd8060abda1c89c4ec_1920.jpg",
+        features: [
+          "Custom bunk beds & trundle beds with toy drawers",
+          "Ergonomic study desk with pin-up & whiteboard",
+          "Child-safe rounded corners and zero-VOC paints",
+          "Vibrant modular shelving for books and games"
+        ],
+        startingPrice: "₹1,30,000"
+      },
+      {
+        id: "partitions",
+        title: "Artistic Partitions & Jali",
+        category: "Decor",
+        shortDesc: "CNC laser-cut jali, wooden rafters, and metal-glass dividers for elegant spatial demarcation.",
+        fullDesc: "Home is not just four walls. Different types of partition walls are created to demarcate spaces without blocking natural light. We design CNC laser-cut MDF/HDF jalis, brass-coated metal frames, and acoustic wooden slats that add architectural drama.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image6.jpg",
+        features: [
+          "Precision CNC laser-cut geometric & floral jalis",
+          "Fluted glass with matte black / champagne gold framing",
+          "Vertical wooden louvers & display niche dividers",
+          "Pooja room privacy partitions with bell carvings"
+        ],
+        startingPrice: "₹45,000"
+      },
+      {
+        id: "office-furniture",
+        title: "Commercial & Office Interiors",
+        category: "Commercial",
+        shortDesc: "Modern office workstations, executive cabins, reception desks, and conference room setups.",
+        fullDesc: "LS Interiors customizes picture-perfect furniture for commercial spaces, startups, and IT offices across Hyderabad. We engineer modular workstations, conference tables with smart wire conduits, and executive cabins that foster productivity.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/image5.jpg",
+        features: [
+          "Modular cluster workstations with acoustic screens",
+          "Executive director tables with modesty panels",
+          "Conference tables with integrated pop-up power boxes",
+          "Commercial reception desk & client lounge furniture"
+        ],
+        startingPrice: "₹2,50,000"
+      },
+      {
+        id: "false-ceiling",
+        title: "False Ceiling & Lighting",
+        category: "Finishing",
+        shortDesc: "Suspended Saint-Gobain gypsum ceilings with perimeter cove, magnetic track, and spot lights.",
+        fullDesc: "A false ceiling transforms the thermal comfort and visual depth of any space. We build moisture-resistant gypsum false ceilings with wooden rafters, magnetic track lighting, and indirect dimmable LED warm cove lights.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images10101010-1.jpg",
+        features: [
+          "Saint-Gobain channel & gypsum board installation",
+          "Perimeter warm LED cove lighting (3000K/4000K)",
+          "Magnetic track light channels and anti-glare COB lights",
+          "Acoustic wooden rafter inserts for living and dining"
+        ],
+        startingPrice: "₹95 / sq.ft"
+      },
+      {
+        id: "painting",
+        title: "Luxury Painting & Wall Textures",
+        category: "Finishing",
+        shortDesc: "Asian Paints Royale luxury emulsions, Italian stucco, concrete textures, and designer wallpapers.",
+        fullDesc: "Paint protects and brings surfaces to life. We provide mechanized sanding, waterproof primer undercoats, and luxury Asian Paints Royale or Berger silk finishes, along with accent wall textures like metallic stucco, stone finish, and wallpapers.",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images.jpg",
+        features: [
+          "Mechanized dust-free sanding and 3-coat putty",
+          "Asian Paints Royale luxury smooth emulsion finish",
+          "Designer metallic & Italian marble stucco accents",
+          "Anti-fungal, washable, and stain-resistant finishes"
+        ],
+        startingPrice: "₹38 / sq.ft"
+      }
+    ];
+
+    const galleryProjects = [
+      {
+        id: 1,
+        title: "Contemporary Villa Living & Dining",
+        category: "Living",
+        location: "Jubilee Hills, Hyderabad",
+        scope: "Full Interior, False Ceiling & Backlit Onyx TV Unit",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images2.jpg"
+      },
+      {
+        id: 2,
+        title: "Minimalist High-Gloss Modular Kitchen",
+        category: "Kitchen",
+        location: "Gachibowli, Hyderabad",
+        scope: "Acrylic Shutter, Quartz Countertop & Tall Pantry",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images5.jpg"
+      },
+      {
+        id: 3,
+        title: "Master Suite & Walk-In Wardrobe",
+        category: "Wardrobes",
+        location: "Banjara Hills, Hyderabad",
+        scope: "Tinted Glass Wardrobe & Upholstered Bedhead",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images8.jpg"
+      },
+      {
+        id: 4,
+        title: "Floating TV Console & Fluted Paneling",
+        category: "Living",
+        location: "Kondapur, Hyderabad",
+        scope: "Acoustic Slats, LED Profile & Storage Console",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images7.jpg"
+      },
+      {
+        id: 5,
+        title: "Custom Factory Manufacturing Facility",
+        category: "Factory",
+        location: "Moosapet Facility, Hyderabad",
+        scope: "German Edge-Banding & CNC Router Precision",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images6.jpg"
+      },
+      {
+        id: 6,
+        title: "Modern Executive Commercial Suite",
+        category: "Office",
+        location: "Hitec City, Hyderabad",
+        scope: "Executive Desks, Glass Partitions & Meeting Lounge",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/images1.jpg"
+      },
+      {
+        id: 7,
+        title: "Opulent Master Bedroom with Ambient Cove",
+        category: "Bedroom",
+        location: "Madhapur, Hyderabad",
+        scope: "Saint-Gobain Gypsum Ceiling & Custom Dresser",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/05.jpg"
+      },
+      {
+        id: 8,
+        title: "Laser-Cut Decorative Spatial Divider",
+        category: "Partitions",
+        location: "Kukatpally, Hyderabad",
+        scope: "MDF Laser Jali with Brass Inlays & Planter Base",
+        image: "https://lsinteriors.in/wp-content/uploads/2021/12/Partitions.jpg"
+      }
+    ];
+
+    const corporateClients = [
+      {
+        name: "GVK EMRI",
+        tagline: "Healthcare Infrastructure & Corporate Offices",
+        logo: "http://dev.skilltechnologies.in/lsinteriors/wp-content/uploads/2021/12/gvk-emri.jpg"
+      },
+      {
+        name: "SITEL INDIA PVT LTD",
+        tagline: "Commercial Call Center Workstations & Cabins",
+        logo: "http://dev.skilltechnologies.in/lsinteriors/wp-content/uploads/2021/12/SITEL-INDIA-PVT-LTD..png"
+      },
+      {
+        name: "Skill Technologies",
+        tagline: "Technology Hub & Digital Workspaces",
+        logo: "https://lsinteriors.in/wp-content/uploads/2021/12/cropped-unnamed11.png"
+      }
+    ];
+
+    const clientTestimonials = [
+      {
+        name: "Rajeshwar Rao",
+        location: "My Home Bhooja, Hitec City",
+        rating: 5,
+        text: "The zero token advance policy was what initially gave us confidence in LS Interiors. They presented high-fidelity 3D drawings of our 3BHK flat beforehand. The factory finishing from their Moosapet unit is so superior compared to traditional carpenters. Handover was right on the 42nd day!",
+        projectType: "3 BHK Luxury Turnkey"
+      },
+      {
+        name: "Pooja & Srinivas Reddy",
+        location: "Aparna Sarovar Zenith, Nallagandla",
+        rating: 5,
+        text: "We wanted a clean German-style acrylic modular kitchen and walk-in wardrobe. LS Interiors managed everything end-to-end. Their factory-direct pricing saved us nearly ₹3.5 Lakhs compared to big showroom quotes.",
+        projectType: "Modular Kitchen & Wardrobes"
+      },
+      {
+        name: "K. Venkat Ramana",
+        location: "Moosapet, Hyderabad",
+        rating: 5,
+        text: "Being a resident of Moosapet, I personally visited their factory workshop. The German machinery and edge banding quality is top-notch. They handled false ceiling, lighting, painting, and woodwork without any hassle. Highly recommended!",
+        projectType: "Independent Villa Complete Interior"
+      }
+    ];
+
+    const processSteps = [
+      {
+        step: "01",
+        title: "Discovery & Site Consultation",
+        desc: "Our senior architect visits your property in Hyderabad for detailed laser measurements and lifestyle requirement mapping."
+      },
+      {
+        step: "02",
+        title: "Photorealistic 3D Drawings (0 Advance)",
+        desc: "We build tailored 3D renders with material selections and give an upfront, transparent cost estimation with zero hidden fees."
+      },
+      {
+        step: "03",
+        title: "In-House Factory Manufacturing",
+        desc: "Your modular panels are CNC cut and machine-edge-banded at our Moosapet facility with millimeter precision and zero manual error."
+      },
+      {
+        step: "04",
+        title: "45-Day White-Glove Installation",
+        desc: "Pre-finished modular units are flat-packed and assembled on-site with clean, dust-free installation by trained craftsmen."
+      },
+      {
+        step: "05",
+        title: "10-Year Warranty & Support",
+        desc: "Final QC inspection, deep cleaning, handover certificate, and an authentic 10-year warranty with dedicated service helpline."
+      }
+    ];
+
+    // --- NAVBAR ---
+    function Navbar({ onOpenEstimate, activeSection, onNavigate, theme, toggleTheme }) {
+      const [mobileOpen, setMobileOpen] = useState(false);
+      const navLinks = [
+        { id: 'hero', label: 'Home' },
+        { id: 'about', label: 'About Us' },
+        { id: 'transformation', label: 'Before & After' },
+        { id: 'calculator', label: 'Cost Estimator' },
+        { id: 'services', label: 'Services' },
+        { id: 'factory', label: 'Factory Interio' },
+        { id: 'gallery', label: 'Gallery' },
+        { id: 'contact', label: 'Contact Us' }
+      ];
+
+      const handleClick = (id) => {
+        setMobileOpen(false);
+        onNavigate(id);
+      };
+
+      return (
+        <>
+          <div className="top-bar">
+            <div className="container top-bar-content">
+              <div className="top-bar-left">
+                <div className="top-bar-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <a href="tel:+919177374198">+91 9177374198</a> / <a href="tel:+917893002568">7893002568</a>
+                </div>
+                <div className="top-bar-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <a href="mailto:lsinteriors24@gmail.com">lsinteriors24@gmail.com</a>
+                </div>
+              </div>
+              <div className="top-bar-right">
+                <span className="top-bar-highlight">★ Zero Token Advance • 3D Image Drawings First</span>
+                <div className="top-bar-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>Moosapet, Hyderabad</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <header className="navbar-wrap">
+            <div className="container">
+              <nav className="navbar">
+                <a href="#hero" className="brand-logo" onClick={(e) => { e.preventDefault(); handleClick('hero'); }}>
+                  <div className="logo-badge">LS</div>
+                  <div className="logo-text">
+                    <span className="logo-name">LS INTERIORS</span>
+                    <span className="logo-tagline">Hyderabad • Estd 2008</span>
+                  </div>
+                </a>
+
+                <ul className={`nav-menu ${mobileOpen ? 'open' : ''}`}>
+                  {navLinks.map((link) => (
+                    <li key={link.id}>
+                      <a
+                        href={`#${link.id}`}
+                        className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                        onClick={(e) => { e.preventDefault(); handleClick(link.id); }}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="nav-actions">
+                  <button className="theme-toggle-btn" onClick={toggleTheme} title="Switch Light/Dark Mode">
+                    {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+                  </button>
+
+                  <button className="btn btn-gold btn-sm btn-consultation" onClick={onOpenEstimate}>
+                    Get Free 3D Estimate
+                  </button>
+                  <button className="nav-mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
+                    {mobileOpen ? '✕' : '☰'}
+                  </button>
+                </div>
+              </nav>
+            </div>
+          </header>
+        </>
+      );
+    }
+
+    // --- HERO ---
+    function Hero({ onOpenEstimate, onScrollToSection }) {
+      return (
+        <section className="hero-section" id="hero">
+          <div className="hero-overlay"></div>
+          <div className="container">
+            <div className="hero-grid">
+              <div className="hero-content">
+                <div className="hero-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <span>Estd. 2008 • Reg. Under Companies Act, Hyderabad</span>
+                </div>
+
+                <h1 className="hero-title">
+                  Develop The Home That You Desired With <span>Factory Precision</span>
+                </h1>
+
+                <p className="hero-desc">
+                  L S Interiors provides bespoke, end-to-end interior design and custom manufacturing solutions across Hyderabad. 
+                  We present photorealistic 3D drawings with <strong>Zero Token Advance</strong>, transparent upfront pricing, and direct factory-to-home handover.
+                </p>
+
+                <div className="hero-pills">
+                  <div className="pill-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Zero Token Advance</span>
+                  </div>
+                  <div className="pill-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>In-House Moosapet Factory</span>
+                  </div>
+                  <div className="pill-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>45-Day Handover Guarantee</span>
+                  </div>
+                  <div className="pill-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>10-Year Genuine Warranty</span>
+                  </div>
+                </div>
+
+                <div className="hero-buttons">
+                  <button className="btn btn-gold" onClick={() => onScrollToSection('calculator')}>
+                    Calculate Project Cost
+                  </button>
+                  <button className="btn btn-outline" onClick={onOpenEstimate}>
+                    Get Free 3D Design
+                  </button>
+                </div>
+              </div>
+
+              <div className="hero-visual">
+                <div className="visual-card-main">
+                  <img src="https://lsinteriors.in/wp-content/uploads/2021/12/image1.jpg" alt="LS Interiors Hyderabad" />
+                  <div className="visual-overlay-badge">
+                    <div className="badge-text">
+                      <h4>Modular Kitchen & Luxury Living</h4>
+                      <p>Custom Engineered at Moosapet Manufacturing Unit</p>
+                    </div>
+                    <button className="btn btn-gold btn-sm" onClick={() => onScrollToSection('gallery')}>
+                      View Work
+                    </button>
+                  </div>
+                </div>
+
+                <div className="floating-pill-badge">
+                  <h5>1,000+</h5>
+                  <span>Projects Completed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- STATS ---
+    function Stats() {
+      const statsList = [
+        { value: "900+", label: "Satisfied Customers", sub: "Across Hyderabad & Secunderabad" },
+        { value: "1,000+", label: "Completed Projects", sub: "Villas, Apartments & Commercial" },
+        { value: "1,000+", label: "Pipelined Projects", sub: "Under execution & design phase" },
+        { value: "16+", label: "Years of Trust", sub: "Registered in 2008 in Hyderabad" }
+      ];
+
+      return (
+        <div className="stats-strip">
+          <div className="container">
+            <div className="stats-grid">
+              {statsList.map((stat, idx) => (
+                <div className="stat-item" key={idx}>
+                  <div className="stat-number">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                  <div className="stat-sub">{stat.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- WHY CHOOSE US & ABOUT ---
+    function WhyChooseUs({ onOpenEstimate }) {
+      return (
+        <section className="section why-section" id="about">
+          <div className="container">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center', marginBottom: '5rem' }}>
+              <div>
+                <span className="section-tag">Since 2008 • Hyderabad</span>
+                <h2 className="section-title" style={{ textAlign: 'left' }}>
+                  Welcome to <span>LS Interiors</span>
+                </h2>
+                <p style={{ marginBottom: '1.2rem', color: 'var(--text-light)', fontSize: '1.05rem', lineHeight: '1.8' }}>
+                  <strong>L S Interiors, Hyderabad</strong> was registered in 2008 under the Companies Act in Hyderabad. 
+                  Over the last 16+ years, we have emerged as one of the twin cities' most reliable interior design and turnkey manufacturing studios.
+                </p>
+                <p style={{ marginBottom: '1.5rem', color: 'var(--text-muted)', lineHeight: '1.7' }}>
+                  Each and every requirement and estimation of work is mapped strictly according to your desires. 
+                  We present you with comprehensive <strong>3D Image Drawings and Pictorial Views</strong> before starting. 
+                  Unlike other firms, <strong>there is NO Token Advance</strong> — we announce the complete, transparent estimation price only after completing the 3D design plan.
+                </p>
+
+                <div style={{ background: 'rgba(4, 66, 12, 0.12)', border: '1px solid var(--border-gold)', borderRadius: '10px', padding: '1.2rem 1.5rem', marginBottom: '2rem' }}>
+                  <div style={{ color: 'var(--gold-dark)', fontWeight: '700', fontSize: '1rem', marginBottom: '0.3rem' }}>
+                    ✓ 100% Assurance of Your Dreams' Fulfilment
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    Custom manufactured at our Moosapet unit with German machinery and direct online purchasing options.
+                  </div>
+                </div>
+
+                <button className="btn btn-gold" onClick={onOpenEstimate}>
+                  Meet Our Architects • Free Consultation
+                </button>
+              </div>
+
+              <div>
+                <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', border: '2px solid var(--border-gold)', boxShadow: 'var(--shadow-md)' }}>
+                  <img src="https://lsinteriors.in/wp-content/uploads/2021/12/images2-440x440.jpg" alt="Welcome to LS Interiors Hyderabad" style={{ width: '100%', height: '420px', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', top: '1.2rem', left: '1.2rem', background: 'var(--glass-bg)', backdropFilter: 'blur(8px)', border: '1px solid var(--gold-primary)', padding: '0.5rem 1rem', borderRadius: '6px', fontSize: '0.82rem', color: 'var(--gold-dark)', fontWeight: '700' }}>
+                    Registered in 2008 • Hyderabad
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="section-header">
+              <span className="section-tag">Our Core Guarantees</span>
+              <h2 className="section-title">Why Homeowners Choose <span>LS Interiors</span></h2>
+              <p className="section-desc">
+                We specialize in interior design providing all kinds of woodwork, living room furniture, children's furniture, and cabinets at a very normal, direct-to-consumer cost.
+              </p>
+            </div>
+
+            <div className="why-grid">
+              {companyInfo.guarantees.map((g, idx) => (
+                <div className="why-card" key={idx}>
+                  <div className="why-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  </div>
+                  <h4>{g.title}</h4>
+                  <p>{g.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- BEFORE & AFTER SLIDER (100% SHARP HD CLIP-PATH ENGINE) ---
+    function BeforeAfterSlider({ onOpenEstimate }) {
+      const [sliderPos, setSliderPos] = useState(50);
+      const [activeScene, setActiveScene] = useState('living');
+      const [isDragging, setIsDragging] = useState(false);
+      const containerRef = useRef(null);
+
+      const scenes = {
+        living: {
+          title: "Luxury Penthouse Living Room",
+          before: "file:///C:/Users/purna/.gemini/antigravity-ide/brain/216693ac-90c2-4b79-b772-110597ebc05d/before_raw_apartment_1792741985796.jpg",
+          after: "file:///C:/Users/purna/.gemini/antigravity-ide/brain/216693ac-90c2-4b79-b772-110597ebc05d/after_luxury_apartment_1792742145647.jpg",
+          fallbackBefore: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1920&q=85",
+          fallbackAfter: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85",
+          beforeAlt: "Bare Shell Raw Concrete Apartment Living Room Before Work",
+          afterAlt: "LS Interiors Finished Luxury Penthouse Living Room"
+        },
+        kitchen: {
+          title: "German Finish Modular Kitchen",
+          before: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=85",
+          after: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=85",
+          beforeAlt: "Unfinished Kitchen Shell Space Before Modular Installation",
+          afterAlt: "LS Interiors High-Gloss Acrylic Modular Kitchen with Quartz Island"
+        }
+      };
+
+      const current = scenes[activeScene];
+
+      const updatePosition = (clientX) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
+        setSliderPos(percentage);
+      };
+
+      const handlePointerDown = (e) => {
+        setIsDragging(true);
+        updatePosition(e.clientX || (e.touches && e.touches[0].clientX));
+      };
+
+      const handlePointerMove = (e) => {
+        if (!isDragging) return;
+        updatePosition(e.clientX || (e.touches && e.touches[0].clientX));
+      };
+
+      const handlePointerUp = () => setIsDragging(false);
+      const handleClick = (e) => updatePosition(e.clientX);
+
+      return (
+        <section className="section slider-section" id="transformation">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">High-Definition Visual Proof</span>
+              <h2 className="section-title">The <span>LS Interiors</span> Transformation</h2>
+              <p className="section-desc">
+                Slide horizontally to experience the razor-sharp difference between a raw concrete flat and our Moosapet factory turnkey execution.
+              </p>
+            </div>
+
+            {/* Scene Selector Tabs */}
+            <div className="ba-scene-tabs">
+              <button
+                className={`tab-btn ${activeScene === 'living' ? 'active' : ''}`}
+                onClick={() => setActiveScene('living')}
+              >
+                🛋️ Living Room Transformation
+              </button>
+              <button
+                className={`tab-btn ${activeScene === 'kitchen' ? 'active' : ''}`}
+                onClick={() => setActiveScene('kitchen')}
+              >
+                🍳 Modular Kitchen Transformation
+              </button>
+            </div>
+
+            {/* Crystal-Clear Clip-Path Slider */}
+            <div
+              className="before-after-box"
+              ref={containerRef}
+              onClick={handleClick}
+              onMouseDown={handlePointerDown}
+              onMouseMove={handlePointerMove}
+              onMouseUp={handlePointerUp}
+              onMouseLeave={handlePointerUp}
+              onTouchStart={handlePointerDown}
+              onTouchMove={handlePointerMove}
+              onTouchEnd={handlePointerUp}
+            >
+              <img
+                src={current.before}
+                alt={current.beforeAlt}
+                className="ba-img-layer"
+                onError={e => { if (current.fallbackBefore) e.target.src = current.fallbackBefore; }}
+              />
+              <span className="ba-label ba-label-before">Before: Raw Shell Flat</span>
+
+              <div
+                className="ba-after-layer"
+                style={{
+                  clipPath: `polygon(0% 0%, ${sliderPos}% 0%, ${sliderPos}% 100%, 0% 100%)`,
+                  WebkitClipPath: `polygon(0% 0%, ${sliderPos}% 0%, ${sliderPos}% 100%, 0% 100%)`
+                }}
+              >
+                <img
+                  src={current.after}
+                  alt={current.afterAlt}
+                  className="ba-img-layer"
+                  onError={e => { if (current.fallbackAfter) e.target.src = current.fallbackAfter; }}
+                />
+              </div>
+              <span className="ba-label ba-label-after">After: LS Interiors Finished Home</span>
+
+              <div className="ba-divider" style={{ left: `${sliderPos}%` }}>
+                <div className="ba-handle">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+              <button className="btn btn-gold" onClick={onOpenEstimate}>
+                Transform Your Home • Get Free 3D Plan
+              </button>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- COST CALCULATOR ---
+    function CostCalculator({ onOpenEstimateWithData }) {
+      const [propertyType, setPropertyType] = useState('3bhk');
+      const [packageTier, setPackageTier] = useState('premium');
+      const [selectedModules, setSelectedModules] = useState({
+        kitchen: true,
+        masterWardrobe: true,
+        guestWardrobe: true,
+        tvUnit: true,
+        falseCeiling: true,
+        painting: true,
+        electrical: false
+      });
+
+      const propertyOptions = [
+        { id: '1bhk', label: '1 BHK', area: '~650 sq.ft', multiplier: 0.6 },
+        { id: '2bhk', label: '2 BHK', area: '~1,150 sq.ft', multiplier: 0.85 },
+        { id: '3bhk', label: '3 BHK', area: '~1,650 sq.ft', multiplier: 1.0 },
+        { id: '4bhk', label: '4 BHK / Villa', area: '~2,600+ sq.ft', multiplier: 1.55 },
+        { id: 'office', label: 'Commercial Office', area: '~1,500 sq.ft', multiplier: 1.2 }
+      ];
+
+      const packageTiers = [
+        { id: 'essential', title: 'Essential Smart', desc: 'MR Grade Plywood, 0.8mm Matte Laminates, Hafele/Ebco soft-close hinges. 5-Yr Warranty.', priceMultiplier: 0.82 },
+        { id: 'premium', title: 'Premium Elegance', desc: '710 BWP Marine Ply, 1.5mm High-Gloss Acrylic, Hettich hardware & sensor LED. 10-Yr Warranty.', priceMultiplier: 1.0 },
+        { id: 'royal', title: 'Royal Luxury Bespoke', desc: 'HDHMR & Marine Ply, PU Paint & Veneer accents, Blum hardware, Italian Quartz & Automation.', priceMultiplier: 1.38 }
+      ];
+
+      const modulesList = [
+        { id: 'kitchen', label: 'Modular Kitchen & Pantry', basePrice: 185000 },
+        { id: 'masterWardrobe', label: 'Master Bedroom Wardrobe & Dresser', basePrice: 140000 },
+        { id: 'guestWardrobe', label: 'Guest / Kids Room Wardrobe', basePrice: 110000 },
+        { id: 'tvUnit', label: 'Living TV Console & Fluted Panel', basePrice: 85000 },
+        { id: 'falseCeiling', label: 'Gypsum False Ceiling & Cove Light', basePrice: 95000 },
+        { id: 'painting', label: 'Royale Luxury Painting & Sanding', basePrice: 65000 },
+        { id: 'electrical', label: 'Smart Electrical & Mood Lighting', basePrice: 70000 }
+      ];
+
+      const toggleModule = (id) => {
+        setSelectedModules(prev => ({ ...prev, [id]: !prev[id] }));
+      };
+
+      const calculatedCost = useMemo(() => {
+        const propMultiplier = propertyOptions.find(p => p.id === propertyType)?.multiplier || 1.0;
+        const tierMultiplier = packageTiers.find(t => t.id === packageTier)?.priceMultiplier || 1.0;
+
+        let subtotal = 0;
+        modulesList.forEach(mod => {
+          if (selectedModules[mod.id]) subtotal += mod.basePrice;
+        });
+
+        const total = Math.round(subtotal * propMultiplier * tierMultiplier);
+        return {
+          total,
+          woodwork: Math.round(total * 0.58),
+          hardware: Math.round(total * 0.16),
+          ceilingPainting: Math.round(total * 0.16),
+          installation: Math.round(total * 0.1)
+        };
+      }, [propertyType, packageTier, selectedModules]);
+
+      const formatINR = (val) => '₹ ' + (val / 100000).toFixed(2) + ' Lakhs';
+
+      const handleBook = () => {
+        const propLabel = propertyOptions.find(p => p.id === propertyType)?.label;
+        const tierTitle = packageTiers.find(t => t.id === packageTier)?.title;
+        onOpenEstimateWithData({
+          propertyType: propLabel,
+          packageTier: tierTitle,
+          estimatedAmount: formatINR(calculatedCost.total),
+          modulesCount: Object.values(selectedModules).filter(Boolean).length
+        });
+      };
+
+      return (
+        <section className="section calculator-section" id="calculator">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Instant Estimate Generator</span>
+              <h2 className="section-title">Hyderabad Home <span>Interior Cost Estimator</span></h2>
+              <p className="section-desc">
+                Get an instant, transparent price projection based on your floor configuration and preferred materials. 
+                Remember: At LS Interiors, we present the final 3D design and quotation with <strong>Zero Token Advance</strong>.
+              </p>
+            </div>
+
+            <div className="calc-container">
+              <div className="calc-steps">
+                <div>
+                  <div className="calc-group-title"><span>1</span> Select Home Configuration</div>
+                  <div className="calc-options-grid">
+                    {propertyOptions.map(opt => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`calc-btn-option ${propertyType === opt.id ? 'selected' : ''}`}
+                        onClick={() => setPropertyType(opt.id)}
+                      >
+                        <strong>{opt.label}</strong>
+                        <div style={{ fontSize: '0.72rem', marginTop: '0.2rem', opacity: 0.8 }}>{opt.area}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="calc-group-title"><span>2</span> Choose Finishing & Material Tier</div>
+                  <div className="calc-tier-cards">
+                    {packageTiers.map(tier => (
+                      <div
+                        key={tier.id}
+                        className={`tier-card ${packageTier === tier.id ? 'selected' : ''}`}
+                        onClick={() => setPackageTier(tier.id)}
+                      >
+                        <h5>{tier.title}</h5>
+                        <p>{tier.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="calc-group-title"><span>3</span> Select Scope & Rooms Required</div>
+                  <div className="calc-checkboxes">
+                    {modulesList.map(mod => (
+                      <div
+                        key={mod.id}
+                        className={`calc-checkbox-item ${selectedModules[mod.id] ? 'checked' : ''}`}
+                        onClick={() => toggleModule(mod.id)}
+                      >
+                        <input type="checkbox" checked={!!selectedModules[mod.id]} onChange={() => {}} />
+                        <span>{mod.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="calc-summary-panel">
+                <div>
+                  <div className="summary-header">
+                    <h4>Estimated Investment</h4>
+                    <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Factory Direct Pricing • Zero Middleman Commissions</p>
+                  </div>
+
+                  <div className="summary-price-box">
+                    <div className="price-box-label">Projected Total (Turnkey)</div>
+                    <div className="price-box-amount">{formatINR(calculatedCost.total)}</div>
+                    <div className="price-box-note">*Final estimation confirmed after free laser site measurement</div>
+                  </div>
+
+                  <div className="summary-breakdown">
+                    <div className="breakdown-row">
+                      <span>In-House Factory Woodwork (Moosapet)</span>
+                      <span>{formatINR(calculatedCost.woodwork)}</span>
+                    </div>
+                    <div className="breakdown-row">
+                      <span>Fittings & Hardware (Hettich / Hafele)</span>
+                      <span>{formatINR(calculatedCost.hardware)}</span>
+                    </div>
+                    <div className="breakdown-row">
+                      <span>False Ceiling & Royale Painting</span>
+                      <span>{formatINR(calculatedCost.ceilingPainting)}</span>
+                    </div>
+                    <div className="breakdown-row">
+                      <span>White-Glove Installation & 10-Yr Warranty</span>
+                      <span>{formatINR(calculatedCost.installation)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <button className="btn btn-gold" style={{ width: '100%', padding: '1rem' }} onClick={handleBook}>
+                    Lock This Estimate & Get 3D Drawings
+                  </button>
+                  <div style={{ textAlign: 'center', marginTop: '0.8rem', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                    ✓ 0 Token Advance • Free Site Visit Across Hyderabad
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- SERVICES SECTION ---
+    function ServicesSection({ onOpenEstimateWithService }) {
+      const [activeCategory, setActiveCategory] = useState('All');
+      const [selectedModal, setSelectedModal] = useState(null);
+      const categories = ['All', 'Kitchen', 'Living', 'Bedroom', 'Storage', 'Commercial', 'Finishes', 'Decor'];
+
+      const filtered = activeCategory === 'All'
+        ? servicesData
+        : servicesData.filter(s => s.category.toLowerCase() === activeCategory.toLowerCase());
+
+      return (
+        <section className="section services-section" id="services">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">End-to-End Solutions</span>
+              <h2 className="section-title">Our <span>Bespoke Interior Services</span></h2>
+              <p className="section-desc">
+                From custom modular kitchens to acoustic ceilings and smart automation, our skilled architects and Moosapet factory craftsmen execute every detail to perfection.
+              </p>
+            </div>
+
+            <div className="service-filter-tabs">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  className={`tab-btn ${activeCategory === cat ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            <div className="services-grid">
+              {filtered.map(s => (
+                <div className="service-card" key={s.id}>
+                  <div className="service-image-box">
+                    <img src={s.image} alt={s.title} loading="lazy" />
+                    <span className="service-price-tag">Starting {s.startingPrice}</span>
+                  </div>
+                  <div className="service-content">
+                    <h3 className="service-title">{s.title}</h3>
+                    <p className="service-desc">{s.shortDesc}</p>
+                    <ul className="service-features-list">
+                      {s.features.slice(0, 3).map((f, i) => (
+                        <li key={i}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="service-actions">
+                      <button className="btn btn-outline btn-sm" onClick={() => setSelectedModal(s)}>
+                        View Details
+                      </button>
+                      <button className="btn btn-gold btn-sm" onClick={() => onOpenEstimateWithService(s.title)}>
+                        Get 3D Quote
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {selectedModal && (
+            <div className="modal-backdrop" onClick={() => setSelectedModal(null)}>
+              <div className="modal-content" onClick={e => e.stopPropagation()}>
+                <button className="modal-close-btn" onClick={() => setSelectedModal(null)}>✕</button>
+                <div style={{ maxHeight: '240px', overflow: 'hidden', borderRadius: '10px', marginBottom: '1.2rem' }}>
+                  <img src={selectedModal.image} alt={selectedModal.title} style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+                </div>
+                <h3 style={{ color: 'var(--text-heading)', marginBottom: '0.5rem', fontFamily: 'var(--font-serif)' }}>{selectedModal.title}</h3>
+                <div style={{ color: 'var(--gold-dark)', fontSize: '0.9rem', fontWeight: '700', marginBottom: '1rem' }}>
+                  Starting from {selectedModal.startingPrice} • Custom Factory Manufactured
+                </div>
+                <p style={{ color: 'var(--text-light)', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                  {selectedModal.fullDesc}
+                </p>
+                <h5 style={{ color: 'var(--text-heading)', marginBottom: '0.8rem' }}>Key Specifications:</h5>
+                <ul className="service-features-list" style={{ marginBottom: '1.8rem' }}>
+                  {selectedModal.features.map((feat, idx) => (
+                    <li key={idx} style={{ color: 'var(--text-light)', fontSize: '0.9rem' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                  <button
+                    className="btn btn-gold"
+                    style={{ flex: 1 }}
+                    onClick={() => {
+                      const t = selectedModal.title;
+                      setSelectedModal(null);
+                      onOpenEstimateWithService(t);
+                    }}
+                  >
+                    Request 3D Drawing & Quote
+                  </button>
+                  <button className="btn btn-outline" onClick={() => setSelectedModal(null)}>Close</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      );
+    }
+
+    // --- FACTORY INTERIO ---
+    function FactoryInterio({ onOpenEstimate }) {
+      return (
+        <section className="section factory-section" id="factory">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Custom Manufacturing Facility • Moosapet</span>
+              <h2 className="section-title">The <span>Factory Interio</span> Advantage</h2>
+              <p className="section-desc">
+                LS Interiors is a vertically integrated custom manufacturing company providing end-to-end interior solutions. 
+                We design in-house and produce every modular element at our dedicated Moosapet factory.
+              </p>
+            </div>
+
+            <div className="factory-hero-grid">
+              <div className="factory-info-col">
+                <h3 style={{ color: 'var(--text-heading)', marginBottom: '1rem', fontFamily: 'var(--font-serif)' }}>
+                  Precision German CNC Engineering vs Traditional Carpenters
+                </h3>
+                <p style={{ marginBottom: '1.2rem', color: 'var(--text-light)' }}>
+                  Traditional carpentry on-site takes months, creates heavy dust, and suffers from uneven manual cutting and edge peeling. 
+                  At LS Interiors, all panels, carousels, and wardrobes are engineered with computerized beam saws and automated multi-radius edge banding.
+                </p>
+
+                <div className="factory-features-list">
+                  <div className="factory-feature-box">
+                    <h5>30% - 40% Cost Savings</h5>
+                    <p>Direct factory-to-doorstep model eliminates expensive dealer margins and middleman commissions.</p>
+                  </div>
+                  <div className="factory-feature-box">
+                    <h5>Zero Edge Peeling</h5>
+                    <p>PUR moisture-proof edge banding prevents water penetration and ensures razor-sharp 0.5mm joint lines.</p>
+                  </div>
+                  <div className="factory-feature-box">
+                    <h5>Certified Marine BWP Ply</h5>
+                    <p>IS:710 grade boiling waterproof core plywood with anti-termite and borer chemical immersion.</p>
+                  </div>
+                  <div className="factory-feature-box">
+                    <h5>Dust-Free 45-Day Install</h5>
+                    <p>Units arrive pre-drilled and flat-packed. On-site installation takes days instead of messy months.</p>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '2rem' }}>
+                  <button className="btn btn-gold" onClick={onOpenEstimate}>
+                    Schedule Factory Visit & Consultation
+                  </button>
+                </div>
+              </div>
+
+              <div className="factory-image-col">
+                <div className="factory-image-wrapper">
+                  <img src="https://lsinteriors.in/wp-content/uploads/2021/12/images6.jpg" alt="LS Interiors Manufacturing" />
+                  <div style={{ position: 'absolute', bottom: '1rem', left: '1rem', right: '1rem', background: 'var(--glass-bg)', backdropFilter: 'blur(10px)', padding: '0.9rem 1.2rem', borderRadius: '8px', border: '1px solid var(--border-gold)', color: 'var(--text-heading)' }}>
+                    <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--gold-dark)' }}>
+                      LS Factory Unit: Moosapet, Hyderabad
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                      HPC Road, Moosapet • High Precision Edge Banding & CNC Routing
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: '4.5rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+                <span className="section-tag">Seamless Handover Journey</span>
+                <h3 style={{ color: 'var(--text-heading)', fontFamily: 'var(--font-serif)' }}>
+                  How We Deliver Your Dream Home in 5 Simple Steps
+                </h3>
+              </div>
+
+              <div className="timeline-grid">
+                {processSteps.map(step => (
+                  <div className="timeline-card" key={step.step}>
+                    <div className="timeline-number">{step.step}</div>
+                    <h4>{step.title}</h4>
+                    <p>{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- GALLERY SECTION ---
+    function GallerySection({ onOpenEstimate }) {
+      const [activeCategory, setActiveCategory] = useState('All');
+      const [lightbox, setLightbox] = useState(null);
+      const categories = ['All', 'Living', 'Kitchen', 'Wardrobes', 'Bedroom', 'Office', 'Factory', 'Partitions'];
+
+      const filtered = activeCategory === 'All'
+        ? galleryProjects
+        : galleryProjects.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+
+      return (
+        <section className="section gallery-section" id="gallery">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Portfolio of Realised Dreams</span>
+              <h2 className="section-title">Featured <span>Project Showcase</span></h2>
+              <p className="section-desc">
+                Explore our curated gallery of handcrafted residences, modular kitchens, and commercial interiors completed across Hyderabad.
+              </p>
+            </div>
+
+            <div className="service-filter-tabs">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  className={`tab-btn ${activeCategory === cat ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            <div className="gallery-grid">
+              {filtered.map(item => (
+                <div className="gallery-card" key={item.id} onClick={() => setLightbox(item)}>
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <div className="gallery-overlay">
+                    <h4>{item.title}</h4>
+                    <p>📍 {item.location}</p>
+                    <div className="scope-text">{item.scope}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <button className="btn btn-gold" onClick={onOpenEstimate}>
+                Request Similar 3D Design for Your Space
+              </button>
+            </div>
+          </div>
+
+          {lightbox && (
+            <div className="modal-backdrop" onClick={() => setLightbox(null)}>
+              <button className="modal-close-btn" onClick={() => setLightbox(null)}>✕</button>
+              <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+                <img src={lightbox.image} alt={lightbox.title} className="lightbox-img" />
+                <div className="lightbox-caption">
+                  <h3 style={{ color: '#FFF', fontFamily: 'var(--font-serif)', marginBottom: '0.3rem' }}>{lightbox.title}</h3>
+                  <p style={{ color: 'var(--gold-light)', fontSize: '0.9rem' }}>📍 {lightbox.location} • {lightbox.scope}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      );
+    }
+
+    // --- CORPORATE CLIENTS ---
+    function CorporateClients() {
+      return (
+        <section className="clients-section">
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '1.8rem' }}>
+              <span style={{ fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold-dark)', fontWeight: '700' }}>
+                Trusted by Hyderabad Corporates & 900+ Homeowners
+              </span>
+            </div>
+            <div className="clients-flex">
+              {corporateClients.map((client, idx) => (
+                <div className="client-logo-item" key={idx}>
+                  <img src={client.logo} alt={client.name} onError={e => { e.target.style.display = 'none'; }} />
+                  <div>
+                    <span>{client.name}</span>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{client.tagline}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- TESTIMONIALS ---
+    function Testimonials({ onOpenEstimate }) {
+      return (
+        <section className="section testimonials-section" id="testimonials">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Hyderabad Homeowner Stories</span>
+              <h2 className="section-title">Words of Appreciation from <span>Our Clients</span></h2>
+              <p className="section-desc">
+                Read authentic feedback from families who entrusted LS Interiors with their apartments, penthouses, and independent villas.
+              </p>
+            </div>
+
+            <div className="testimonials-grid">
+              {clientTestimonials.map((review, idx) => (
+                <div className="testimonial-card" key={idx}>
+                  <div>
+                    <div className="stars-row">
+                      {[...Array(review.rating)].map((_, i) => <span key={i}>★</span>)}
+                    </div>
+                    <p className="testimonial-text">"{review.text}"</p>
+                  </div>
+                  <div className="author-info">
+                    <h5>{review.name}</h5>
+                    <p>📍 {review.location} • <em>{review.projectType}</em></p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: '3.5rem', textAlign: 'center', background: 'rgba(4, 66, 12, 0.15)', border: '1px solid var(--border-gold)', borderRadius: '16px', padding: '2.5rem' }}>
+              <h3 style={{ color: 'var(--text-heading)', fontFamily: 'var(--font-serif)', marginBottom: '0.6rem' }}>
+                Ready to Begin Your Home Transformation?
+              </h3>
+              <p style={{ color: 'var(--text-muted)', maxWidth: '620px', margin: '0 auto 1.5rem auto', fontSize: '0.95rem' }}>
+                Get your floor plan evaluated by our senior designers with zero initial token advance. We provide the 3D drawings and itemized estimation upfront.
+              </p>
+              <button className="btn btn-gold" onClick={onOpenEstimate}>
+                Book Free Site Measurement & 3D Drawings
+              </button>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- CONTACT SECTION ---
+    function ContactSection() {
+      const [formData, setFormData] = useState({
+        fullName: '',
+        phone: '',
+        email: '',
+        location: '',
+        propertyType: '3 BHK',
+        message: ''
+      });
+      const [submitted, setSubmitted] = useState(false);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formData.fullName || !formData.phone) {
+          alert('Please provide your name and phone number.');
+          return;
+        }
+        setSubmitted(true);
+      };
+
+      return (
+        <section className="section contact-section" id="contact">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Get in Touch With Our Designers</span>
+              <h2 className="section-title">Visit Our Factory or <span>Book a Consultation</span></h2>
+              <p className="section-desc">
+                Connect directly with LS Interiors' founders and chief architects. 
+                Free laser site measurement and photorealistic 3D drawings with zero token advance.
+              </p>
+            </div>
+
+            <div className="contact-grid">
+              <div className="contact-info-panel">
+                <div className="contact-card-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <div>
+                    <h5>Office & Manufacturing Unit Address</h5>
+                    <p>{companyInfo.address}</p>
+                    <div style={{ marginTop: '0.6rem' }}>
+                      <a href="https://maps.google.com/?q=Moosapet+Hyderabad+Telangana" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold-dark)', fontWeight: '600', fontSize: '0.85rem' }}>
+                        ↗ Open in Google Maps
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="contact-card-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <div>
+                    <h5>Direct Helpline Numbers</h5>
+                    <p>
+                      <a href="tel:+919177374198">+91 9177374198</a> <br />
+                      <a href="tel:+917893002568">+91 7893002568</a>
+                    </p>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
+                      Available 9:00 AM – 8:30 PM (Mon – Sun)
+                    </div>
+                  </div>
+                </div>
+
+                <div className="contact-card-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <div>
+                    <h5>Official Email Inquiry</h5>
+                    <p><a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a></p>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
+                      Send floor plans for express 24-hr 3D quotation
+                    </div>
+                  </div>
+                </div>
+
+                <div className="contact-card-box" style={{ background: 'rgba(37, 211, 102, 0.12)', borderColor: 'rgba(37, 211, 102, 0.35)' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25D366" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  <div>
+                    <h5 style={{ color: '#16803C' }}>WhatsApp Direct Connect</h5>
+                    <p style={{ color: 'var(--text-light)' }}>Chat instantly with our senior interior design director.</p>
+                    <div style={{ marginTop: '0.5rem' }}>
+                      <a
+                        href="https://wa.me/919177374198?text=Hello%20LS%20Interiors,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project%20in%20Hyderabad."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-emerald btn-sm"
+                        style={{ background: '#128C7E' }}
+                      >
+                        Open WhatsApp Chat
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="contact-form-box">
+                <h3 style={{ color: 'var(--text-heading)', fontFamily: 'var(--font-serif)', marginBottom: '0.4rem' }}>
+                  Request Free Site Measurement & 3D Plan
+                </h3>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+                  Fill in your details below. We will assign a senior designer to inspect your space in Hyderabad with zero advance fees.
+                </p>
+
+                {submitted ? (
+                  <div className="alert-success">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <div>
+                      <strong>Thank You, {formData.fullName}!</strong>
+                      <p style={{ fontSize: '0.82rem', margin: 0, color: 'var(--text-light)' }}>
+                        Your request has been registered. Our senior architect from Moosapet will call you at <strong>{formData.phone}</strong> within 2 hours.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <label className="form-label">Full Name *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Rahul Sharma"
+                        className="form-input"
+                        value={formData.fullName}
+                        onChange={e => setFormData({ ...formData, fullName: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label className="form-label">Phone Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+91 98765 43210"
+                          className="form-input"
+                          value={formData.phone}
+                          onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Email Address</label>
+                        <input
+                          type="email"
+                          placeholder="name@email.com"
+                          className="form-input"
+                          value={formData.email}
+                          onChange={e => setFormData({ ...formData, email: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label className="form-label">Property Location</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Hitec City / Moosapet"
+                          className="form-input"
+                          value={formData.location}
+                          onChange={e => setFormData({ ...formData, location: e.target.value })}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Property Type</label>
+                        <select
+                          className="form-select"
+                          value={formData.propertyType}
+                          onChange={e => setFormData({ ...formData, propertyType: e.target.value })}
+                        >
+                          <option value="1 BHK">1 BHK Apartment</option>
+                          <option value="2 BHK">2 BHK Apartment</option>
+                          <option value="3 BHK">3 BHK Luxury Flat</option>
+                          <option value="4 BHK / Villa">4 BHK / Villa</option>
+                          <option value="Commercial">Commercial Office</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Requirements & Comments</label>
+                      <textarea
+                        rows="3"
+                        placeholder="Tell us about your spaces (Modular Kitchen, Wardrobes, False Ceiling, Wall Finishes, etc.)"
+                        className="form-textarea"
+                        value={formData.message}
+                        onChange={e => setFormData({ ...formData, message: e.target.value })}
+                      ></textarea>
+                    </div>
+
+                    <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '0.95rem' }}>
+                      Submit Inquiry • 0 Token Advance
+                    </button>
+                    <div style={{ textAlign: 'center', marginTop: '0.8rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                      🔒 Your contact information remains strictly confidential.
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- FOOTER ---
+    function Footer({ onScrollToSection, onOpenEstimate }) {
+      return (
+        <footer className="footer" id="colophon">
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-col">
+                <div className="brand-logo" style={{ marginBottom: '1.2rem' }}>
+                  <div className="logo-badge">LS</div>
+                  <div className="logo-text">
+                    <span className="logo-name">LS INTERIORS</span>
+                    <span className="logo-tagline">Hyderabad • Estd 2008</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: '0.88rem', color: '#A0B0A6', lineHeight: '1.7', marginBottom: '1.2rem' }}>
+                  {companyInfo.registration}. We are a vertically integrated custom manufacturing company providing end-to-end bespoke interior solutions with zero token advance.
+                </p>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--border-gold)', padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.78rem', color: 'var(--gold-light)' }}>
+                  <span>100% Assurance of Your Dreams' Fulfilment</span>
+                </div>
+              </div>
+
+              <div className="footer-col">
+                <h4>Quick Links</h4>
+                <ul className="footer-links-list">
+                  <li><a href="#hero" onClick={e => { e.preventDefault(); onScrollToSection('hero'); }}>Home</a></li>
+                  <li><a href="#about" onClick={e => { e.preventDefault(); onScrollToSection('about'); }}>About Us</a></li>
+                  <li><a href="#transformation" onClick={e => { e.preventDefault(); onScrollToSection('transformation'); }}>Before & After</a></li>
+                  <li><a href="#calculator" onClick={e => { e.preventDefault(); onScrollToSection('calculator'); }}>Cost Estimator</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Services</a></li>
+                  <li><a href="#factory" onClick={e => { e.preventDefault(); onScrollToSection('factory'); }}>Factory Interio</a></li>
+                  <li><a href="#gallery" onClick={e => { e.preventDefault(); onScrollToSection('gallery'); }}>Project Gallery</a></li>
+                  <li><a href="#contact" onClick={e => { e.preventDefault(); onScrollToSection('contact'); }}>Contact Us</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-col">
+                <h4>Our Specialties</h4>
+                <ul className="footer-links-list">
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Modular Kitchen Ideas</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Designer Wardrobes</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>TV & Crockery Units</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Living Room Furniture</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Partitions & Jalis</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>Commercial & Office</a></li>
+                  <li><a href="#services" onClick={e => { e.preventDefault(); onScrollToSection('services'); }}>False Ceiling & Light</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-col">
+                <h4>Factory & Office</h4>
+                <p style={{ fontSize: '0.85rem', color: '#CCD6CF', lineHeight: '1.6', marginBottom: '0.8rem' }}>
+                  <strong>Address:</strong><br />
+                  Plot no- 15, Bldg.No-5-246/9/2, HPC Road, Moosapet, Hyderabad, Telangana - 500018.
+                </p>
+                <p style={{ fontSize: '0.85rem', color: '#CCD6CF', lineHeight: '1.6', marginBottom: '0.8rem' }}>
+                  <strong>Phone:</strong><br />
+                  <a href="tel:+919177374198">+91 9177374198</a>, <a href="tel:+917893002568">+91 7893002568</a>
+                </p>
+                <p style={{ fontSize: '0.85rem', color: '#CCD6CF', lineHeight: '1.6', marginBottom: '1.2rem' }}>
+                  <strong>Email:</strong><br />
+                  <a href="mailto:lsinteriors24@gmail.com">lsinteriors24@gmail.com</a>
+                </p>
+                <button className="btn btn-gold btn-sm" onClick={onOpenEstimate} style={{ width: '100%' }}>
+                  Get Free 3D Estimation
+                </button>
+              </div>
+            </div>
+
+            <div className="footer-bottom">
+              <div>
+                © {companyInfo.established} - {new Date().getFullYear()} L S Interiors | Designed & Developed by <strong style={{ color: 'var(--gold-primary)' }}>Purna</strong>. Registered under Companies Act, Hyderabad.
+              </div>
+
+              {/* Designed by Purna Credit Badge */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: 'rgba(212, 175, 55, 0.15)',
+                border: '1.5px solid var(--gold-primary)',
+                padding: '0.5rem 1.2rem',
+                borderRadius: '25px',
+                boxShadow: '0 4px 15px rgba(212, 175, 55, 0.25)'
+              }}>
+                <span style={{ fontSize: '0.85rem', color: '#FFF' }}>Designed & Built with ❤️ by</span>
+                <strong style={{
+                  color: 'var(--gold-light)',
+                  fontSize: '1rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase'
+                }}>
+                  Purna
+                </strong>
+              </div>
+
+              <div style={{ display: 'flex', gap: '1.5rem', color: '#8F9E96' }}>
+                <span>Privacy Policy</span>
+                <span>Terms of Service</span>
+                <span>Factory ISO Standards</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // --- ESTIMATE MODAL ---
+    function EstimateModal({ isOpen, onClose, initialData }) {
+      const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        propertyLocation: '',
+        configuration: initialData?.propertyType || '3 BHK',
+        packageTier: initialData?.packageTier || 'Premium Elegance',
+        scopeDetails: initialData?.serviceTitle || ''
+      });
+      const [isSuccess, setIsSuccess] = useState(false);
+      const [bookingId, setBookingId] = useState('');
+
+      useEffect(() => {
+        if (initialData) {
+          setFormData(prev => ({
+            ...prev,
+            configuration: initialData.propertyType || prev.configuration,
+            packageTier: initialData.packageTier || prev.packageTier,
+            scopeDetails: initialData.serviceTitle || prev.scopeDetails
+          }));
+        }
+      }, [initialData]);
+
+      if (!isOpen) return null;
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formData.name || !formData.phone) {
+          alert('Please provide your name and phone number.');
+          return;
+        }
+        setBookingId('LSI-HYD-' + Math.floor(1000 + Math.random() * 9000));
+        setIsSuccess(true);
+      };
+
+      const handleReset = () => {
+        setIsSuccess(false);
+        onClose();
+      };
+
+      return (
+        <div className="modal-backdrop" onClick={onClose}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={onClose}>✕</button>
+
+            {isSuccess ? (
+              <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+                <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(4, 66, 12, 0.4)', border: '2px solid var(--gold-primary)', color: 'var(--gold-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', margin: '0 auto 1.2rem auto' }}>
+                  ✓
+                </div>
+                <h3 style={{ color: 'var(--text-heading)', fontFamily: 'var(--font-serif)', marginBottom: '0.4rem' }}>
+                  3D Design Consultation Confirmed!
+                </h3>
+                <p style={{ color: 'var(--gold-dark)', fontWeight: '700', fontSize: '1.05rem', marginBottom: '0.8rem' }}>
+                  Booking Reference: {bookingId}
+                </p>
+                <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', lineHeight: '1.7', marginBottom: '1.8rem' }}>
+                  Thank you, <strong>{formData.name}</strong>. Our senior interior architect will review your property details and contact you at <strong>{formData.phone}</strong> to schedule your free laser site measurement in Hyderabad.
+                </p>
+                <div style={{ background: 'var(--bg-dark)', borderRadius: '10px', padding: '1rem', textAlign: 'left', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '1.8rem' }}>
+                  <div style={{ color: 'var(--text-heading)', fontWeight: '600', marginBottom: '0.3rem' }}>Next Steps:</div>
+                  <div>• Free Laser Site Visit & Dimension Mapping</div>
+                  <div>• 3D Drawing Presentation (Pictorial Views)</div>
+                  <div>• Exact Itemized Estimation (Zero Token Advance)</div>
+                </div>
+                <button className="btn btn-gold" onClick={handleReset} style={{ width: '100%' }}>Done</button>
+              </div>
+            ) : (
+              <div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span className="section-tag" style={{ marginBottom: '0.5rem' }}>Zero Token Advance</span>
+                  <h3 style={{ color: 'var(--text-heading)', fontFamily: 'var(--font-serif)', marginBottom: '0.3rem' }}>
+                    Book Free 3D Design & Site Estimate
+                  </h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    Get architectural 3D drawings and itemized estimates for your space in Hyderabad with zero upfront advance payment.
+                  </p>
+                </div>
+
+                {initialData?.estimatedAmount && (
+                  <div style={{ background: 'rgba(4, 66, 12, 0.12)', border: '1px dashed var(--gold-primary)', padding: '0.8rem 1rem', borderRadius: '8px', marginBottom: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.82rem', color: 'var(--text-heading)' }}>
+                      Selected Estimate ({initialData.propertyType} - {initialData.packageTier}):
+                    </span>
+                    <span style={{ color: 'var(--gold-dark)', fontWeight: '800', fontSize: '1.1rem' }}>
+                      {initialData.estimatedAmount}
+                    </span>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-label">Your Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter your name"
+                      className="form-input"
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">WhatsApp / Phone *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98765 43210"
+                        className="form-input"
+                        value={formData.phone}
+                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Email ID</label>
+                      <input
+                        type="email"
+                        placeholder="email@domain.com"
+                        className="form-input"
+                        value={formData.email}
+                        onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Property Location (Hyderabad)</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Gachibowli / Moosapet"
+                        className="form-input"
+                        value={formData.propertyLocation}
+                        onChange={e => setFormData({ ...formData, propertyLocation: e.target.value })}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Home Configuration</label>
+                      <select
+                        className="form-select"
+                        value={formData.configuration}
+                        onChange={e => setFormData({ ...formData, configuration: e.target.value })}
+                      >
+                        <option value="1 BHK">1 BHK</option>
+                        <option value="2 BHK">2 BHK</option>
+                        <option value="3 BHK">3 BHK</option>
+                        <option value="4 BHK / Villa">4 BHK / Villa</option>
+                        <option value="Commercial">Commercial Office</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Key Requirements / Notes</label>
+                    <textarea
+                      rows="2"
+                      placeholder="e.g. Modular Kitchen, 2 Wardrobes, False Ceiling"
+                      className="form-textarea"
+                      value={formData.scopeDetails}
+                      onChange={e => setFormData({ ...formData, scopeDetails: e.target.value })}
+                    ></textarea>
+                  </div>
+
+                  <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '0.95rem' }}>
+                    Confirm Free 3D Design Appointment
+                  </button>
+                  <div style={{ textAlign: 'center', marginTop: '0.8rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                    ✓ No token advance required • Direct factory engineers
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // --- FLOATING ACTIONS ---
+    function FloatingActions() {
+      const [showTop, setShowTop] = useState(false);
+
+      useEffect(() => {
+        const checkScroll = () => setShowTop(window.scrollY > 400);
+        window.addEventListener('scroll', checkScroll);
+        return () => window.removeEventListener('scroll', checkScroll);
+      }, []);
+
+      const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+      const whatsappUrl = `https://wa.me/${companyInfo.whatsapp.replace('+', '')}?text=${encodeURIComponent(
+        'Hello LS Interiors Hyderabad, I would like to inquire about interior design services and free 3D estimation for my property.'
+      )}`;
+
+      return (
+        <div className="floating-actions">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="float-btn float-whatsapp" title="Chat on WhatsApp">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="tel:+919177374198" className="float-btn float-phone" title="Call LS Interiors">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          {showTop && (
+            <button onClick={scrollToTop} className="float-btn float-top" title="Back to Top">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+            </button>
+          )}
+        </div>
+      );
+    }
+
+    // --- MAIN APP ---
+    function App() {
+      const [theme, setTheme] = useState('dark');
+      const [estimateModalOpen, setEstimateModalOpen] = useState(false);
+      const [modalInitialData, setModalInitialData] = useState(null);
+      const [activeSection, setActiveSection] = useState('hero');
+
+      useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+      }, [theme]);
+
+      const toggleTheme = () => {
+        setTheme(prev => prev === 'light' ? 'dark' : 'light');
+      };
+
+      const handleOpenEstimate = (customData = null) => {
+        setModalInitialData(customData);
+        setEstimateModalOpen(true);
+      };
+
+      const handleOpenWithService = (serviceTitle) => {
+        handleOpenEstimate({
+          serviceTitle: `Inquiry for ${serviceTitle}`,
+          propertyType: '3 BHK'
+        });
+      };
+
+      const handleOpenWithCalculatorData = (calcData) => {
+        handleOpenEstimate({
+          propertyType: calcData.propertyType,
+          packageTier: calcData.packageTier,
+          estimatedAmount: calcData.estimatedAmount,
+          serviceTitle: `Custom package: ${calcData.modulesCount} rooms selected`
+        });
+      };
+
+      const handleScrollToSection = (sectionId) => {
+        setActiveSection(sectionId);
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
+      return (
+        <div className="ls-app-root" data-theme={theme}>
+          <Navbar
+            onOpenEstimate={() => handleOpenEstimate()}
+            activeSection={activeSection}
+            onNavigate={handleScrollToSection}
+            theme={theme}
+            toggleTheme={toggleTheme}
+          />
+          <main>
+            <Hero onOpenEstimate={() => handleOpenEstimate()} onScrollToSection={handleScrollToSection} />
+            <Stats />
+            <WhyChooseUs onOpenEstimate={() => handleOpenEstimate()} />
+            <BeforeAfterSlider onOpenEstimate={() => handleOpenEstimate()} />
+            <CostCalculator onOpenEstimateWithData={handleOpenWithCalculatorData} />
+            <ServicesSection onOpenEstimateWithService={handleOpenWithService} />
+            <FactoryInterio onOpenEstimate={() => handleOpenEstimate()} />
+            <GallerySection onOpenEstimate={() => handleOpenEstimate()} />
+            <CorporateClients />
+            <Testimonials onOpenEstimate={() => handleOpenEstimate()} />
+            <ContactSection />
+          </main>
+          <Footer onScrollToSection={handleScrollToSection} onOpenEstimate={() => handleOpenEstimate()} />
+          <FloatingActions />
+          <EstimateModal
+            isOpen={estimateModalOpen}
+            onClose={() => setEstimateModalOpen(false)}
+            initialData={modalInitialData}
+          />
+        </div>
+      );
+    }
+
+    // Render to DOM
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
